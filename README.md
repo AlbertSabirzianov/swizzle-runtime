@@ -18,7 +18,7 @@ Written in pure Rust with custom x86-64 AVX2/F16C, NVIDIA CUDA (`sm_75`–`sm_12
 [![API](https://img.shields.io/badge/API-OpenAI%20%7C%20llama.cpp%20%7C%20Ollama-green.svg)](#server-and-apis)
 [![Twitter Follow](https://img.shields.io/badge/Twitter-@Swizzler112-1DA1F2?logo=x&logoColor=white)](https://x.com/Swizzler112)
 
-**[Swizzle AI](https://github.com/Swizzle-AI)** &emsp; **[Architecture](docs/src/how-it-is-fast.md)** &emsp; **[Benchmarks](docs/src/benchmarks.md)** &emsp; **[Community Hackathon](HACKATHON.md)**
+**[Swizzle AI](https://github.com/Swizzle-AI)** &emsp; **[Architecture](docs/src/how-it-is-fast.md)** &emsp; **[Benchmarks](docs/src/benchmarks.md)**
 
 </div>
 
@@ -48,6 +48,12 @@ Every speed-up preserves deterministic greedy output and reproducible inference 
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/Swizzle-AI/swizzle-runtime/main/install.sh | sh
+```
+
+### Run with Docker (GHCR)
+
+```sh
+docker run --rm -p 8080:8080 -v "$PWD/models:/models:ro" ghcr.io/swizzle-ai/swizzle-runtime:latest /models/model.gguf
 ```
 
 ### Build from Source
