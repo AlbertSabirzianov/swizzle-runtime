@@ -58,6 +58,12 @@ irm https://raw.githubusercontent.com/Swizzle-AI/swizzle-runtime/main/install.ps
 
 > **Note:** Prebuilt Windows binaries are not yet available. The script will fall back to building from source via `cargo`.
 
+### Run with Docker (GHCR)
+
+```sh
+docker run --rm -p 8080:8080 -v "$PWD/models:/models:ro" ghcr.io/swizzle-ai/swizzle-runtime:latest /models/model.gguf
+```
+
 ### Build from Source
 
 CPU + Vulkan (no CUDA toolkit required; CUDA driver opened dynamically when built with `nvcc`):
@@ -131,6 +137,10 @@ swizzle-rt bench path/to/model.gguf --device cuda
 ---
 
 ## Verified Benchmarks
+
+<p align="center">
+  <img src="assets/swizzle_benchmark_comparison.png" alt="Swizzle Runtime vs llama.cpp Benchmark Comparison" width="100%" />
+</p>
 
 Measured back-to-back on an **AMD Ryzen 7 170** (16 logical / 8 physical cores) + **NVIDIA GeForce RTX 3050 Laptop GPU** (4 GB VRAM, `sm_86`, CUDA 12.8, driver 591.84) via `scripts/bench_compare_engines.py --repetitions 5 --cooldown-secs 5` (all runs verified `edit_identical: true` and 4/4 greedy `/v1/completions` output parity; peak GPU temp `56°C`):
 
