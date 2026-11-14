@@ -44,6 +44,12 @@ Every speed-up preserves deterministic greedy output and reproducible inference 
 
 ## Quick Start
 
+### One-Command Install (Linux x86_64 CUDA 12.8)
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/Swizzle-AI/swizzle-runtime/main/install.sh | sh
+```
+
 ### Build from Source
 
 CPU + Vulkan (no CUDA toolkit required; CUDA driver opened dynamically when built with `nvcc`):
@@ -116,6 +122,20 @@ Measured back-to-back on an **AMD Ryzen 7 170** (16 logical / 8 physical cores) 
 | `LFM3-1.7B-Q4_K_M.gguf` | CPU | `edit256` | 83.87 | 82.25 | -1.9% | `edit_identical: yes` |
 
 See [docs/src/benchmarks.md](docs/src/benchmarks.md) for methodology, latency percentiles, and reproduction instructions.
+
+### Community Hardware Leaderboard
+
+Want to see how `swizzle-rt` performs on your GPU or CPU? Run the built-in benchmark and post your output in [Issue #5](https://github.com/Swizzle-AI/swizzle-runtime/issues/5) to be added to the community leaderboard:
+
+```sh
+swizzle-rt bench path/to/model.gguf --device cuda --json
+```
+
+| Contributor | Hardware | Model | Test | Tok/s | Latency |
+| --- | --- | --- | --- | ---: | --- |
+| `@Paramveersingh-S` | RTX 3050 Laptop (4 GB, `sm_86`) | `Qwen3-0.6B-Q8_0` | `tg128` / `pp512` | 209.70 / 11804.23 | ITL p50 4.84 ms / TTFT 43.37 ms |
+| `@Paramveersingh-S` | AMD Ryzen 7 170 (8C/16T AVX2) | `Qwen3-0.6B-Q8_0` | `edit256` | 90.61 | `edit_identical: yes` |
+| *Your handle here* | *Submit via Issue #5* | — | — | — | — |
 
 ---
 
